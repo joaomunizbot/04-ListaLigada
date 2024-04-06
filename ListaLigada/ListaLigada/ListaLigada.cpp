@@ -146,13 +146,25 @@ void inserirElemento()
 void excluirElemento()
 {
 	int n;
-	NO* aux = primeiro;
+	NO* atual = primeiro;
+	NO* anterior = NULL;
 	cout << "Digite o elemento que deseja excluir: ";
 	cin >> n;
-	if (aux->valor == n) {
-		aux->prox == NULL;
-		free(aux);
-	}	
+
+	if (primeiro == NULL) {
+		cout << "Lista Vazia!" << endl;
+		return;
+	}
+	if (primeiro->valor == n) {
+		primeiro = primeiro->prox;
+		return;
+	}
+	while(atual->valor != n) {
+		anterior = atual;
+		atual = atual->prox;
+	}
+	anterior->prox = atual->prox;
+	free(atual);
 }
 
 void buscarElemento()
